@@ -10,7 +10,7 @@ pipeline{
         }
         stage("Trivy File System Scan"){
             steps{
-                trivy fs . -o results.json
+                sh "trivy fs . -o results.json"
                 echo "Trivy File System Scan Output Saved in results.json"
             }
         }
