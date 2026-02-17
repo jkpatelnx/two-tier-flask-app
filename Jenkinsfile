@@ -42,5 +42,26 @@ pipeline{
             }
         }
     }
+
+post{
+    success{
+        script{
+            emailext from: 'jkpatelnx@gmail.com',
+            to: 'jkpatelnx@gmail.com',
+            body: 'Build success from two-tier-flask-app',
+            subject: 'Build success from two-tier-flask-app'
+        }
+    }
+    failure{
+        script{
+            emailext from: 'jkpatelnx@gmail.com',
+            to: 'jkpatelnx@gmail.com',
+            body: 'Build failed from two-tier-flask-app',
+            subject: 'Build failed from two-tier-flask-app'
+        }
+    }
+
+}
+    
 }
 
