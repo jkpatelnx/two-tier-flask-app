@@ -1,17 +1,20 @@
+@Library("Shared")_
 pipeline{
     agent { label "dev" }
     
     stages{
         stage("code"){
             steps{
-                git url : "https://github.com/jkpatelnx/two-tier-flask-app.git", branch: "main"
-                echo "clone the code from github"
+                script{
+                    clone("https://github.com/jkpatelnx/two-tier-flask-app.git","main")
+                }
             }
         }
         stage("Trivy File System Scan"){
             steps{
-                sh "trivy fs . -o results.json"
-                echo "Trivy File System Scan Output Saved in results.json"
+                script{
+                    trivy_scan()
+                }
             }
         }
         stage("build"){
